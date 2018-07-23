@@ -1,0 +1,10 @@
+{
+    "presets": [
+        "backpack-core/babel",
+        "env",
+        "stage-3"
+    ],
+    "plugins": [
+        "transform-runtime"
+    ]
+}
