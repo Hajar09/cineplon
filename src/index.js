@@ -3,6 +3,7 @@ import express from "express"
 import volleyball from "volleyball"
 import passport from "passport"
 import { connect } from "./config/db"
+import { restRouter } from "./api"
 
 const app = express()
 const { SERV_P } = process.env
@@ -12,7 +13,7 @@ app.use(volleyball)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
-//app.use('/api', )
+app.use('/api', restRouter)
 
 app.get('/', (req, res) => {
     res.send("ça marche")
