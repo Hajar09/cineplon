@@ -6,7 +6,7 @@ export default {
     async create(req, res) {
         try {
             const schema = Joi.object().keys({
-                title: Joi.string().required(), //.trim().minlength(5).maxlength(255),
+                title: Joi.string().required(), //.trim().minlength(5).maxlength(255), (pb)
                 numberInStock: Joi.number().integer().required().min(0).max(255),
                 dailyRentalRate: Joi.number().integer().required().min(0).max(255)
             });

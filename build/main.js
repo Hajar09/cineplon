@@ -876,6 +876,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 var restRouter = exports.restRouter = _express2.default.Router();
 
 restRouter.use('/movies', _movie.movieRouter);
+//restRouter.use('/customers', customerRouter)
 
 /***/ }),
 /* 44 */
@@ -954,11 +955,11 @@ var _joi = __webpack_require__(87);
 
 var _joi2 = _interopRequireDefault(_joi);
 
-var _joiObjectid = __webpack_require__(90);
+var _joiObjectid = __webpack_require__(88);
 
 var _joiObjectid2 = _interopRequireDefault(_joiObjectid);
 
-var _movie = __webpack_require__(88);
+var _movie = __webpack_require__(89);
 
 var _movie2 = _interopRequireDefault(_movie);
 
@@ -977,7 +978,7 @@ exports.default = {
                         case 0:
                             _context.prev = 0;
                             schema = _joi2.default.object().keys({
-                                title: _joi2.default.string().required(), //.trim().minlength(5).maxlength(255),
+                                title: _joi2.default.string().required(), //.trim().minlength(5).maxlength(255), (pb)
                                 numberInStock: _joi2.default.number().integer().required().min(0).max(255),
                                 dailyRentalRate: _joi2.default.number().integer().required().min(0).max(255)
                             });
@@ -3031,6 +3032,12 @@ module.exports = require("joi");
 
 /***/ }),
 /* 88 */
+/***/ (function(module, exports) {
+
+module.exports = require("joi-objectid");
+
+/***/ }),
+/* 89 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -3044,7 +3051,7 @@ var _mongoose = __webpack_require__(24);
 
 var _mongoose2 = _interopRequireDefault(_mongoose);
 
-var _mongoosePaginate = __webpack_require__(89);
+var _mongoosePaginate = __webpack_require__(90);
 
 var _mongoosePaginate2 = _interopRequireDefault(_mongoosePaginate);
 
@@ -3061,7 +3068,7 @@ var movieSchema = new Schema({
         //maxlength: 255
     },
     //genre: {
-    //type: String, //à lier avec les genres quand c'est fait
+    //type: String, //à lier avec les genres quand la catégorie est faite
     //required: true
     //},
     numberInStock: {
@@ -3082,16 +3089,10 @@ movieSchema.plugin(_mongoosePaginate2.default);
 exports.default = _mongoose2.default.model('Movie', movieSchema);
 
 /***/ }),
-/* 89 */
-/***/ (function(module, exports) {
-
-module.exports = require("mongoose-paginate");
-
-/***/ }),
 /* 90 */
 /***/ (function(module, exports) {
 
-module.exports = require("joi-objectid");
+module.exports = require("mongoose-paginate");
 
 /***/ })
 /******/ ]);

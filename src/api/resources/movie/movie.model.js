@@ -11,7 +11,7 @@ const movieSchema = new Schema({
         //maxlength: 255
     },
     //genre: {
-        //type: String, //à lier avec les genres quand c'est fait
+        //type: String, //à lier avec les genres quand la catégorie est faite
         //required: true
     //},
     numberInStock: {
