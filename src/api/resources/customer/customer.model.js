@@ -1,4 +1,5 @@
 import mongoose from "mongoose"
+import mongoosePaginate from "mongoose-paginate"
 const { Schema } = mongoose;
 
 export const STANDARD_ROLE = false
@@ -13,7 +14,8 @@ const customerSchema = new Schema({
     },
     isGold: {
         type: Boolean,
-        default:false
+        default:false,
+        required: true
     },
     phone: {
         type: String,
@@ -32,4 +34,5 @@ const customerSchema = new Schema({
     }
 })
 
+customerSchema.plugin(mongoosePaginate);
 export default mongoose.model("Customer", customerSchema)

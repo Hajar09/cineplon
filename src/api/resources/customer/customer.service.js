@@ -12,7 +12,7 @@ export default {
     validateSignup(body) {
         const schema = Joi.object().keys({
             name: Joi.string().required(),
-            isGold: Joi.boolean(),
+            isGold: Joi.boolean().required(),
             phone: Joi.string().required(),
             email: Joi.string().email().required(),
             password: Joi.string().required(),

@@ -26,7 +26,7 @@ export default {
             const genres = await Genre.paginate({}, options)
             res.json(genres)
         } catch (err) {
-            console.log(err)
+            console.error(err)
             return res.status(500).send(err)
         }
     }, 

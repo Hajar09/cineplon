@@ -28,9 +28,9 @@ const movieSchema = new Schema({
         min: 0,
         max: 255
     }, 
-    /*vipCustomer: {
+    vipCustomer: {
         type: mongoose.Schema.Types.ObjectId, ref: "Customer", required: true
-    }*/
+    }
 })
 
 movieSchema.plugin(mongoosePaginate)

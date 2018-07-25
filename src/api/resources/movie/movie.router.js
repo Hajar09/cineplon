@@ -5,16 +5,16 @@ import { isGld } from "../../middlewares/gold"
 
 export const movieRouter = express.Router()
 
-//const vipPolicy = [passport.authenticate('jwt', {session: false}), isGld]
+const vipPolicy = [passport.authenticate('jwt', {session: false}), isGld]
 
 movieRouter.route('/')
-    .post(/*vipPolicy,*/ movieCtrl.create)
-    .get(/*passport.authenticate('jwt', {
+    .post(vipPolicy, movieCtrl.create)
+    .get(passport.authenticate('jwt', {
         session: false
-    }),*/ movieCtrl.findAll)
+    }), movieCtrl.findAll)
 movieRouter.route('/:id')
-    .get(/*passport.authenticate('jwt', {
+    .get(passport.authenticate('jwt', {
         session: false
-    }),*/ movieCtrl.findOne)
-    .put(/*vipPolicy,*/ movieCtrl.update)
-    .delete(/*vipPolicy,*/ movieCtrl.delete)
+    }), movieCtrl.findOne)
+    .put(vipPolicy, movieCtrl.update)
+    .delete(vipPolicy, movieCtrl.delete)
