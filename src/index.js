@@ -4,6 +4,9 @@ import volleyball from "volleyball"
 import passport from "passport"
 import { connect } from "./config/db"
 import { restRouter } from "./api"
+import {
+    configJWTStrategy
+} from "./api/middlewares/passport-jwt"
 
 const app = express()
 const { SERV_P } = process.env
@@ -13,6 +16,8 @@ app.use(volleyball)
 app.use(express.json())
 app.use(express.urlencoded({extended: true}))
 
+app.use(passport.initialize()) 
+configJWTStrategy()
 app.use('/api', restRouter)
 
 app.get('/', (req, res) => {

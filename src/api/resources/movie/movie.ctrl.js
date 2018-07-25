@@ -1,5 +1,4 @@
 import Joi from "joi"
-import JoiObjectId from "joi-objectid"
 import Movie from "./movie.model"
 
 export default {
@@ -8,7 +7,7 @@ export default {
             const schema = Joi.object().keys({
                 title: Joi.string().required(), //.trim().minlength(5).maxlength(255), (pb)
                 numberInStock: Joi.number().integer().required().min(0).max(255),
-                dailyRentalRate: Joi.number().integer().required().min(0).max(255)
+                dailyRentalRate: Joi.number().integer().required().min(0).max(255),
             });
             const {
                 value, error
@@ -16,7 +15,7 @@ export default {
             if(error && error.details) {
                 return res.status(400).json(error);
             }
-            const movie = await Movie.create(value);
+            const movie = await Movie.create(value)//Object.assign({}, value, { kind: req.kind._id })); 
             return res.json(movie)
         } catch(err) {
             console.log(err)
@@ -32,10 +31,10 @@ export default {
             const options = {
                 page: parseInt(page, 10) || 1,
                 limit: parseInt(perPage, 10) || 10,
-                //populate: {
-                    //path: ,
-                    //select: ,
-                //}
+                populate: {
+                    path: 'vipCustomer',
+                    select: 'name',
+                }
             };
             const movies = await Movie.paginate({}, options)
             res.json(movies)
@@ -47,7 +46,7 @@ export default {
     async findOne(req, res) {
         try{
             const { id } = req.params
-            const movie = await Movie.findById(id) //ajouter le populate
+            const movie = await Movie.findById(id).populate('name') 
             if(!movie) {
                 return res.status(400).json({
                     err: "couldn\'t find a movie"

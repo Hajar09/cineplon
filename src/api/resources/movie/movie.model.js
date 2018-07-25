@@ -1,6 +1,7 @@
 import mongoose from "mongoose"
 import mongoosePaginate from "mongoose-paginate"
 
+
 const { Schema } = mongoose;
 const movieSchema = new Schema({
     title: {
@@ -10,10 +11,11 @@ const movieSchema = new Schema({
         //minlength: 5,
         //maxlength: 255
     },
-    //genre: {
-        //type: String, //à lier avec les genres quand la catégorie est faite
-        //required: true
-    //},
+    /*kind: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: "Genre",
+        required: true
+    },*/
     numberInStock: {
         type: Number,
         required: true,
@@ -25,7 +27,10 @@ const movieSchema = new Schema({
         required: true,
         min: 0,
         max: 255
-    }
+    }, 
+    /*vipCustomer: {
+        type: mongoose.Schema.Types.ObjectId, ref: "Customer", required: true
+    }*/
 })
 
 movieSchema.plugin(mongoosePaginate)

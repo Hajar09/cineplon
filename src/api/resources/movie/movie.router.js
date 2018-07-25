@@ -1,14 +1,20 @@
 import express from "express"
-import passport from "passport"//à faire pour l'authentification
+import passport from "passport"
 import movieCtrl from "./movie.ctrl"
-//middlewares
+import { isGld } from "../../middlewares/gold"
 
 export const movieRouter = express.Router()
 
+//const vipPolicy = [passport.authenticate('jwt', {session: false}), isGld]
+
 movieRouter.route('/')
-    .post(movieCtrl.create)
-    .get(movieCtrl.findAll)
+    .post(/*vipPolicy,*/ movieCtrl.create)
+    .get(/*passport.authenticate('jwt', {
+        session: false
+    }),*/ movieCtrl.findAll)
 movieRouter.route('/:id')
-    .get(movieCtrl.findOne)
-    .put(movieCtrl.update)
-    .delete(movieCtrl.delete)
+    .get(/*passport.authenticate('jwt', {
+        session: false
+    }),*/ movieCtrl.findOne)
+    .put(/*vipPolicy,*/ movieCtrl.update)
+    .delete(/*vipPolicy,*/ movieCtrl.delete)
