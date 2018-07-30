@@ -15,7 +15,7 @@ export default {
             if(error && error.details) {
                 return res.status(400).json(error);
             }
-            const movie = await Movie.create(value)//Object.assign({}, value, { vipCustomer: req.customer._id, kind: req.genre._id})); 
+            const movie = await Movie.create(Object.assign({}, value, { vipCustomer: req.customer._id}, /*, kind: req.genre._id}*/)); 
             return res.json(movie)
         } catch(err) {
             console.log(err)
